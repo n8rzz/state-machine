@@ -9,14 +9,29 @@
         .btn  {
             padding: 10px;
         }
+
+        .counter {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .counter-view {}
+
+        .counter-controls {}
     </style>
 </head>
 <body>
     <h1>ts-starter</h1>
 
     <h3>Counter</h3>
-    <button class="btn js-btn-decrease">-</button>
-    <button class="btn js-btn-increase">+</button>
+    <div class="counter">
+        <div class="counter-view js-counterView"></div>
+        <div class="counter-controls">
+            <button class="btn js-btn-decrease">-</button>
+            <button class="btn js-btn-increase">+</button>
+        </div>
+    </div>
 
     <script src="/script/bundle.js"></script>
 </body>

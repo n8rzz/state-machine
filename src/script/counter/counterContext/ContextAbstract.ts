@@ -1,6 +1,6 @@
 import { IContext } from '../IContext';
 
-export class ContextAbstract {
+export abstract class ContextAbstract {
     protected _model: IContext = null;
     protected _name: string = '';
 
