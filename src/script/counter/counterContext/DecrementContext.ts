@@ -17,16 +17,16 @@ export class DecrementContext extends ContextAbstract {
     public onEnter(): void {
         super.onEnter();
 
-        this.model.currentContext = CounterContextEnum.DecrementContext;
+        this._model.currentContext = CounterContextEnum.DecrementContext;
     }
 
     public shouldMoveToNextContext(): boolean {
-        console.log('T', this.model.target, this.model.value <= this.model.target);
+        console.log('T', this._model.target, this._model.value <= this._model.target);
 
-        return this.model.value <= this.model.target;
+        return this._model.value <= this._model.target;
     }
 
     public update(): void {
-        this.model.decrement();
+        this._model.decrement();
     }
 }

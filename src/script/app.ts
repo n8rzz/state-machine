@@ -1,4 +1,4 @@
-import { CounterController } from './CounterController';
+import { CounterController } from './counter/CounterController';
 
 export class App {
     private _counterController: CounterController = null;

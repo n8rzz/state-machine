@@ -1,12 +1,11 @@
 import { IContext } from '../IContext';
 
 export class ContextAbstract {
-    public model: IContext = null;
-
-    private _name: string = '';
+    protected _model: IContext = null;
+    protected _name: string = '';
 
     constructor(model: IContext) {
-        this.model = model;
+        this._model = model;
     }
 
     public getNextContext(): ContextAbstract {
