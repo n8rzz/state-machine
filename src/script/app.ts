@@ -1,13 +1,13 @@
 import { CounterController } from './CounterController';
 
 export class App {
-    private counterController: CounterController = null;
+    private _counterController: CounterController = null;
 
     constructor() {
-        this.counterController = new CounterController();
+        this._counterController = new CounterController();
     }
 
     public update(): void {
-        this.counterController.update();
+        this._counterController.update();
     }
 }

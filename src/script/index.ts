@@ -7,5 +7,5 @@ import { App } from './app';
 
     setInterval(() => {
         app.update();
-    }, 1000);
+    }, 2000);
 })();

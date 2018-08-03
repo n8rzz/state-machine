@@ -6,6 +6,10 @@ export class CounterModel implements IContext {
 
     private _value: number = 0;
 
+    get contextName(): string {
+        return CounterContextEnum[this.currentContext];
+    }
+
     get currentValue(): number {
         return this._value;
     }

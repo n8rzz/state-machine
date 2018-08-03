@@ -2,38 +2,61 @@ import { CounterModel } from './CounterModel';
 import { DecrementContext } from './DecrementContext';
 import { IncrementContext } from './IncrementContext';
 import { NeutralContext } from './NeutralContext';
+import { CounterContextEnum } from './CounterContextEnum';
 
 let i: number = 0;
 
 export class CounterController {
     private _model: CounterModel = null;
     private _context: DecrementContext | IncrementContext | NeutralContext = null;
+    private _$increaseBtn: HTMLButtonElement = null;
+    private _$decreaseBtn: HTMLButtonElement = null;
+    private _onClickDecreaseHandler: (event: UIEvent) => void = this._onClickDecrease.bind(this);
+    private _onClickIncreaseHandler: (event: UIEvent) => void = this._onClickIncrease.bind(this);
 
     constructor() {
         this._model = new CounterModel();
         this._context = new NeutralContext(this._model);
+
+        return this._createChildren()
+            ._setupHandlers();
     }
 
     public update(): void {
+        console.log(`$  ${this._model.contextName}: ${this._model.currentValue}`);
+
         this._context.update();
-        this._updateContext();
 
         i++;
     }
 
-    private _updateContext(): void {
-        if (this._model.currentValue > 10) {
-            console.log('IncrementContext', this._model.currentValue);
+    private _updateContext(NextContext: any): void {
+        this._context = new NextContext(this._model);
+    }
 
-            this._context = new IncrementContext(this._model);
+    private _createChildren(): this {
+        this._$decreaseBtn = document.getElementsByClassName('js-btn-decrease')[0] as HTMLButtonElement;
+        this._$increaseBtn = document.getElementsByClassName('js-btn-increase')[0] as HTMLButtonElement;
 
-            return;
-        } else if (this._model.currentValue % 15 === 0) {
-            console.log('DecrementContext', this._model.currentValue);
+        return this;
+    }
 
-            this._context = new DecrementContext(this._model);
+    private _setupHandlers(): this {
+        this._$decreaseBtn.addEventListener('click', this._onClickDecreaseHandler);
+        this._$increaseBtn.addEventListener('click', this._onClickIncreaseHandler);
 
-            return;
-        }
+        return this;
+    }
+
+    private _onClickDecrease(event: UIEvent): void {
+        event.preventDefault();
+
+        this._updateContext(DecrementContext);
+    }
+
+    private _onClickIncrease(event: UIEvent): void {
+        event.preventDefault();
+
+        this._updateContext(IncrementContext);
     }
 }
