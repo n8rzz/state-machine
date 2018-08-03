@@ -1,5 +1,5 @@
 import { IContext } from './IContext';
-import { CounterContextEnum } from './CounterContextEnum';
+import { CounterContextEnum } from './counterContext/CounterContextEnum';
 
 export class CounterModel implements IContext {
     public currentContext: CounterContextEnum = CounterContextEnum.NeutralContext;

@@ -1,9 +1,9 @@
 import { ContextAbstract } from './ContextAbstract';
-import { IContext } from './IContext';
+import { IContext } from '../IContext';
 import { CounterContextEnum } from './CounterContextEnum';
 import { NeutralContext } from './NeutralContext';
 
-export class DecrementContext extends ContextAbstract {
+export class IncrementContext extends ContextAbstract {
     constructor(model: IContext) {
         super(model);
 
@@ -17,16 +17,16 @@ export class DecrementContext extends ContextAbstract {
     public onEnter(): void {
         super.onEnter();
 
-        this.model.currentContext = CounterContextEnum.DecrementContext;
+        this.model.currentContext = CounterContextEnum.IncrementContext;
     }
 
     public shouldMoveToNextContext(): boolean {
-        console.log('T', this.model.target, this.model.value <= this.model.target);
+        console.log('T', this.model.target, Math.abs(this.model.value) >= this.model.target);
 
-        return this.model.value <= this.model.target;
+        return Math.abs(this.model.value) >= this.model.target;
     }
 
     public update(): void {
-        this.model.decrement();
+        this.model.increment();
     }
 }

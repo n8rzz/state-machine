@@ -1,5 +1,5 @@
 import { ContextAbstract } from './ContextAbstract';
-import { IContext } from './IContext';
+import { IContext } from '../IContext';
 import { CounterContextEnum } from './CounterContextEnum';
 import { IncrementContext } from './IncrementContext';
 

@@ -1,14 +1,14 @@
 import { CounterModel } from './CounterModel';
-import { DecrementContext } from './DecrementContext';
-import { IncrementContext } from './IncrementContext';
-import { NeutralContext } from './NeutralContext';
-import { CounterContextEnum } from './CounterContextEnum';
+import { DecrementContext } from './counterContext/DecrementContext';
+import { IncrementContext } from './counterContext/IncrementContext';
+import { NeutralContext } from './counterContext/NeutralContext';
+import { ContextAbstract } from './counterContext/ContextAbstract';
 
 let i: number = 0;
 
 export class CounterController {
     private _model: CounterModel = null;
-    private _context: DecrementContext | IncrementContext | NeutralContext = null;
+    private _context: ContextAbstract = null;
     private _$increaseBtn: HTMLButtonElement = null;
     private _$decreaseBtn: HTMLButtonElement = null;
     private _onClickDecreaseHandler: (event: UIEvent) => void = this._onClickDecrease.bind(this);

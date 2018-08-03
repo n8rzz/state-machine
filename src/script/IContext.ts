@@ -1,4 +1,4 @@
-import { CounterContextEnum } from './CounterContextEnum';
+import { CounterContextEnum } from './counterContext/CounterContextEnum';
 
 export interface IContext {
     currentContext: CounterContextEnum;

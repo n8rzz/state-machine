@@ -1,4 +1,4 @@
-import { IContext } from './IContext';
+import { IContext } from '../IContext';
 
 export class ContextAbstract {
     public model: IContext = null;
@@ -9,7 +9,7 @@ export class ContextAbstract {
         this.model = model;
     }
 
-    public getNextContext(): any {
+    public getNextContext(): ContextAbstract {
         return null;
     }
 
