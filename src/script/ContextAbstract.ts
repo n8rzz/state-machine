@@ -9,6 +9,22 @@ export class ContextAbstract {
         this.model = model;
     }
 
+    public getNextContext(): any {
+        return null;
+    }
+
+    public onEnter(): void {
+        console.log('onEnter');
+    }
+
+    public onExit(): void {
+        console.log('onExit');
+    }
+
+    public shouldMoveToNextContext(): boolean {
+        return false;
+    }
+
     public update(): void {
         throw new Error('ContextAbstract#update not implemented');
     }

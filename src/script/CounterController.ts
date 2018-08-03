@@ -27,10 +27,19 @@ export class CounterController {
 
         this._context.update();
 
+        if (this._context.shouldMoveToNextContext()) {
+            this._updateContext(this._context.getNextContext());
+        }
+
         i++;
     }
 
     private _updateContext(NextContext: any): void {
+        if (this._context instanceof NextContext) {
+            return;
+        }
+
+        this._context.onExit();
         this._context = new NextContext(this._model);
     }
 
@@ -51,12 +60,18 @@ export class CounterController {
     private _onClickDecrease(event: UIEvent): void {
         event.preventDefault();
 
+        const nextTarget: number = -5;
+
+        this._model.updateTarget(nextTarget);
         this._updateContext(DecrementContext);
     }
 
     private _onClickIncrease(event: UIEvent): void {
         event.preventDefault();
 
+        const nextTarget: number = 5;
+
+        this._model.updateTarget(nextTarget);
         this._updateContext(IncrementContext);
     }
 }
