@@ -25,10 +25,8 @@ export class CounterController {
     }
 
     public update(): void {
-        console.log(`$  ${this._model.contextName}: ${this._model.currentValue}`);
-
         this._context.update();
-        this._view.update(this._model.contextName, this._model.currentValue);
+        this._view.update(this._model.contextName, this._model.currentValue, this._model.target);
 
         if (this._context.shouldMoveToNextContext()) {
             this._updateContext(this._context.getNextContext());
@@ -47,9 +45,13 @@ export class CounterController {
     }
 
     private _createChildren(): this {
-        this._view = new CounterView();
+        const contextView = document.getElementsByClassName('js-counterContextName')[0] as HTMLElement;
+        const currentValueView = document.getElementsByClassName('js-counterCurrentValue')[0] as HTMLElement;
+        const counterTargetValue = document.getElementsByClassName('js-counterTargetValue')[0] as HTMLElement;
+
         this._$decreaseBtn = document.getElementsByClassName('js-btn-decrease')[0] as HTMLButtonElement;
         this._$increaseBtn = document.getElementsByClassName('js-btn-increase')[0] as HTMLButtonElement;
+        this._view = new CounterView(contextView, currentValueView, counterTargetValue);
 
         return this;
     }
