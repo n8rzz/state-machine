@@ -1,15 +1,18 @@
 export class CounterView {
-    private _element: HTMLElement = null;
+    private _contextView: HTMLElement = null;
+    private _currentValueView: HTMLElement = null;
     private _currentValue: number = 0;
 
-    constructor(element: HTMLElement) {
-        this._element = element;
+    constructor() {
+        this._contextView = document.getElementsByClassName('js-counterContextName')[0] as HTMLElement;
+        this._currentValueView = document.getElementsByClassName('js-counterCurrentValue')[0] as HTMLElement;
     }
 
-    public update(nextValue: number): void {
+    public update(currentContext: string, nextValue: number): void {
         this._updateCurrentValue(nextValue);
 
-        this._element.innerText = String(this._currentValue);
+        this._contextView.innerText = currentContext;
+        this._currentValueView.innerText = String(this._currentValue);
     }
 
     private _updateCurrentValue(nextValue: number): void {
